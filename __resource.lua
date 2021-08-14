@@ -6,3 +6,5 @@ description 'A small script to avoid permanent jumping'
 version '1.0.0'
 
 client_script "client.lua"
+
+server_script "startupmessage.lua"

@@ -72,22 +72,22 @@ Citizen.CreateThread(function(source)
         if (retval == false) then
         if (wait == false) then
         wait = true
-        print("Fun: "..fun)
+        -- print("Fun: "..fun)
 
         local ragdoll = 1
         if (fun == 0) then
         ragdoll = math.random(1,fallchance)
         end
 
-        print(ragdoll)
-        print(retval)
-        print(ped)
+        -- print(ragdoll)
+        -- print(retval)
+        -- print(ped)
         -- TriggerEvent('pNotify:SendNotification', {
         --     text = {ragdoll}
         -- })
         -- print(fun)
         if (ragdoll == 1) then
-            print('ragdoll')
+            -- print('ragdoll')
             Citizen.Wait(700)
             SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, true, true, false) 
             TriggerEvent('pNotify:SendNotification', {
@@ -111,7 +111,7 @@ local seted = 0
     if (fun == 0) then
     fun = 1
     ragdoll = 1
-    print('FUNmode on')
+    -- print('FUNmode on')
     seted = 1
     TriggerEvent('chat:addMessage', {
         color = { 255, 0, 0},
@@ -123,7 +123,7 @@ local seted = 0
     if (seted == 0) then
     if (fun == 1) then
         fun = 0
-        print('FUNmode off')
+        -- print('FUNmode off')
 
         TriggerEvent('chat:addMessage', {
             color = { 255, 0, 0},
@@ -150,4 +150,4 @@ RegisterCommand("ragdollfun", function(source)
 end)
 
 
-    
+print("[MCD_Ragdoll]: Script Version 1.0")
