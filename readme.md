@@ -10,7 +10,7 @@ Einstellungen finden Sie in der client.lua
 
 <!-- Installation -->
 
-installiere pNotify
+installiere pNotify (https://github.com/Nick78111/pNotify)
 
 Füge mcd_ragdoll in resources Ordner ein
 
@@ -32,7 +32,7 @@ starte den server neu und Viel Spaß
 
  <!-- Installation -->
 
-install pNotify
+install pNotify (https://github.com/Nick78111/pNotify)
 
 Add mcd_ragdoll to the resources folder
 
