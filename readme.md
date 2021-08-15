@@ -1,6 +1,6 @@
 # MCD_Ragdoll
 
-**Script createt by MausCD**
+**Script created by MausCD**
 
 
 # English
