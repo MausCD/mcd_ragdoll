@@ -16,7 +16,7 @@
  
  pNotify (https://github.com/Nick78111/pNotify)
 
- ** Installation **
+ **Installation**
 
 Add mcd_ragdoll to the resources folder
 
@@ -32,7 +32,7 @@ If you have any issues, comments or suggestions please put them below.
 
 # Deutsch
 
-** Über**
+**Über**
 
  Ragdollfun ist ein Kommand mit dem mann den Funmode de-aktivieren kann
  im Funmode modus fällst du immer hin wenn du springst
@@ -44,7 +44,7 @@ Einstellungen finden Sie in der client.lua
  pNotify (https://github.com/Nick78111/pNotify)
 
 
-** Installation **
+**Installation**
 
 Füge mcd_ragdoll in resources Ordner ein
 
