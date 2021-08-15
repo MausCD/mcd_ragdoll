@@ -14,7 +14,7 @@
  
  **Requirements**
  
- [pNotify] (https://github.com/Nick78111/pNotify)
+ **[pNotify] (https://github.com/Nick78111/pNotify)**
 
  **Installation**
 
@@ -41,7 +41,7 @@ Einstellungen finden Sie in der client.lua
 
 **Requirements**
 
- [pNotify] (https://github.com/Nick78111/pNotify)
+ **[pNotify] (https://github.com/Nick78111/pNotify)**
 
 
 **Installation**
