@@ -7,6 +7,8 @@
 
 **About**
 
+This script adds a chance to stumble/slip off
+
  Ragdollfun is a command with which one you can de- aktivate the funmode
  In funmode you always fall when you jump
 
@@ -33,6 +35,8 @@ If you have any issues, comments or suggestions please put them below.
 # Deutsch
 
 **Über**
+
+Dieses Script füg eine Chance zum Stolpern/Abrutschen hinzu
 
  Ragdollfun ist ein Kommand mit dem mann den Funmode de-aktivieren kann
  im Funmode modus fällst du immer hin wenn du springst
