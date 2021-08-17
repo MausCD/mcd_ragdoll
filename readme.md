@@ -4,10 +4,13 @@
 
 **Changelog**
 Version 1.0.1:
+
 Add Falling on normal Walking
 
 Version 1.0.2:
+
 Add Higher Chance to Fall when you are drunked
+
 Add config.lua
 
 # English
