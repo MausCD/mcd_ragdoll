@@ -2,6 +2,13 @@
 
 **Script created by MausCD**
 
+**Changelog**
+Version 1.0.1:
+Add Falling on normal Walking
+
+Version 1.0.2:
+Add Higher Chance to Fall when you are drunked
+Add config.lua
 
 # English
 
@@ -31,7 +38,6 @@ restart the server and have fun
 If you have any issues, comments or suggestions please put them below.
 
 
-
 # Deutsch
 
 **Über**
@@ -59,3 +65,5 @@ starte den server neu und Viel Spaß
 **Des Weiteren [Support](https://discord.gg/REYxXaJJsU)**
 
 Wenn Sie Probleme, Kommentare oder Vorschläge haben, geben Sie diese bitte unten ein.
+
+

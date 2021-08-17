@@ -1,27 +1,18 @@
------------------------------------------- CONFIG ------------------------------------------
+------------------------------------------ Config ------------------------------------------
 
-local servername = "Shadow-V"   -- place here your server name
-
-
-
-local fallchance = 10   -- place here the chance to fall (standart 1/10)
-
-
-
-local language = "de" -- write lower case (Available languages: de,en)
-
-
-
-local command = 1 -- de-, aktivate funmode command 1 = true , 0 == false   
-
-
-
-local fallchancew = 200 -- place here the chance to fall (standart 1/200)
-
-
-
-local wfall = true -- toggle falling on pressing normal walking
-
+local servername = Config.servername
+local fallchance = Config.fallchance   
+local language = Config.language 
+local command = 0 
+if(Config.command == true) then
+    command = 1
+end  
+print(command)
+local fallchancew = Config.fallchancew 
+local wfall = Config.wfall 
+local usingstatus = Config.usingstatus 
+local drunkfallchance = Config.drunkfallchance
+local drunkfallchancew = Config.drunkfallchancew
 
 --------------------------------------------- END ---------------------------------------------
 ESX = nil
@@ -31,6 +22,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 local wait = false
 local waitw = false
 local fun = 0
+local debugg = false
 local ragdoll = 1
 local retval = IsPedInAnyVehicle(ped,atGetIn --[[ boolean ]])
 local isfallen = "You tripped/slipped"
@@ -38,6 +30,10 @@ local nocommand = "Funmode command not aktivated!"
 local funmodeon = "Funmode: ON"
 local funmodeoff = "Funmode: OFF"
 local isfallenw = "You tripped"
+local drunktext1 = "You are drunk run carefully ;)"
+local drunktext2 = "You are no longer drunk run!"
+local debuggon = "Debugg: ON"
+local debuggoff = "Debugg: OFF"
 
 
 Citizen.CreateThread(function(source)	
@@ -49,6 +45,8 @@ Citizen.CreateThread(function(source)
             funmodeon = "Funmode: ON"
             funmodeoff = "Funmode: OFF"
             isfallenw = "You tripped"
+            drunktext1 = "You are drunk run carefully ;)"
+            drunktext2 = "You are no longer drunk run!"
         else
             if (language == "de") then
             isfallen = "Du bist gestolpert/abgerutscht"
@@ -56,6 +54,8 @@ Citizen.CreateThread(function(source)
             funmodeon = "Funmode: AN"
             funmodeoff = "Funmode: AUS"
             isfallenw = "Du bist gestolpert"
+            drunktext1 = "Du bist bedrunken lauf vorsichtig ;) "
+            drunktext2 = "Du bist nicht mehr bedrunken lauf!"
 
             else 
             isfallen = "translation ".. language .. " doesn`t exist"
@@ -63,6 +63,8 @@ Citizen.CreateThread(function(source)
             funmodeon = "translation ".. language .." doesn`t exist"
             funmodeoff = "translation ".. language .." doesn`t exist"
             isfallenw = "translation ".. language .. " doesn`t exist"
+            drunktext1 = "translation ".. language .. " doesn`t exist"
+            drunktext2 = "translation ".. language .. " doesn`t exist"
         end end
 
     end 
@@ -78,19 +80,23 @@ Citizen.CreateThread(function(source)
         if (retval == false) then
         if (wait == false) then
         wait = true
-        -- print("Fun: "..fun)
+        if(debugg == true) then
+        print("Fun: "..fun)
+        end
+
 
         local ragdoll = 1
         if (fun == 0) then
         ragdoll = math.random(1,fallchance)
+        if(debugg == true) then
+        print(ragdoll)
+        end
         end
 
         -- print(ragdoll)
         -- print(retval)
         -- print(ped)
-        -- TriggerEvent('pNotify:SendNotification', {
-        --     text = {ragdoll}
-        -- })
+
         -- print(fun)
         if (ragdoll == 1) then
             -- print('ragdoll')
@@ -120,6 +126,9 @@ if (wfall == true) then
     local ragdollw = 1
     if (fun == 0) then
     ragdollw = math.random(1,fallchancew)
+    if(debugg == true) then
+    print(ragdollw)
+    end
     end
 
     if (ragdollw == 1) then
@@ -141,7 +150,9 @@ local seted = 0
     if (fun == 0) then
     fun = 1
     ragdoll = 1
-    -- print('FUNmode on')
+    if(debugg == true) then
+    print('FUNmode on')
+    end
     seted = 1
     TriggerEvent('chat:addMessage', {
         color = { 255, 0, 0},
@@ -153,8 +164,9 @@ local seted = 0
     if (seted == 0) then
     if (fun == 1) then
         fun = 0
-        -- print('FUNmode off')
-
+        if(debugg == true) then
+        print('FUNmode off')
+        end
         TriggerEvent('chat:addMessage', {
             color = { 255, 0, 0},
             multiline = true,
@@ -164,6 +176,35 @@ local seted = 0
 
 
     seted = 0
+end)
+
+RegisterNetEvent("toggledebugg")
+AddEventHandler("toggledebugg", function(souce)
+local setedd = false
+
+    if (debugg == false) then
+    debugg = true
+    setedd = true
+    TriggerEvent('chat:addMessage', {
+        color = { 255, 0, 0},
+        multiline = true,
+        args = {servername, debuggon}
+        })
+    end
+
+    if (setedd == false) then
+    if (debugg == true) then
+        debugg = false
+
+        TriggerEvent('chat:addMessage', {
+            color = { 255, 0, 0},
+            multiline = true,
+            args = {servername, debuggoff}
+            })
+    end end
+
+
+    setedd = false
 end)
 
 RegisterCommand("ragdollfun", function(source)
@@ -179,5 +220,93 @@ RegisterCommand("ragdollfun", function(source)
     end
 end)
 
+RegisterCommand("ragdolldebugg", function(source)
+    TriggerEvent("toggledebugg")
+end)
 
+
+-- basic needs
+
+RegisterNetEvent("mcd_ragdoll:drunk")
+AddEventHandler("mcd_ragdoll:drunk", function(source,isdrunk)
+    if(isdrunk == true) then
+        local now = false
+        local mfallchance = fallchance
+        fallchance = drunkfallchance
+        local mfallchancew = fallchancew
+        fallchancew = drunkfallchancew
+        TriggerEvent('pNotify:SendNotification', {
+            text = {drunktext1}
+        })
+        TriggerEvent('mcd_ragdoll:save', mfallchancew, mfallchance, now)
+
+        if(debugg == true) then
+            print("now: "..now)
+            print("mfallchance: "..mfallchance)
+            print("mfallchancew: "..mfallchancew)
+            print("drunkfallchance: "..drunkfallchance)
+            print("drunkfallchancew: "..drunkfallchancew)
+        end
+    else
+        local now = true
+        TriggerEvent('mcd_ragdoll:save', now)
+    end
+end)
+
+RegisterNetEvent("mcd_ragdoll:undrunk")
+AddEventHandler("mcd_ragdoll:undrunk", function(mfallchancew,mfallchance)
+        fallchance = mfallchance
+        fallchancew = mfallchancew
+        TriggerEvent('pNotify:SendNotification', {
+            text = {drunktext2}
+        })
+        if(debugg == true) then
+            print("fallchance: "..fallchance)
+            print("mfallchance: "..mfallchance)
+            print("fallchancew: "..fallchancew)
+            print("mfallchancew: "..mfallchancew)
+
+        end
+end)
+
+RegisterNetEvent("mcd_ragdoll:save")
+AddEventHandler("mcd_ragdoll:save", function(mfallchancew,mfallchance,now)
+        local mfallchance = mfallchance 
+        local mfallchancew = mfallchancew
+        if (now == true) then
+            TriggerEvent('mcd_ragdoll:undrunk', mfallchancew, mfallchance)
+        end
+        if(debugg == true) then
+            print("mfallchance: "..mfallchance)
+            print("mfallchancew: "..mfallchancew)
+        end
+end)
+ 
+local isdrunk = false
+Citizen.CreateThread(function(source)	
+    while true do
+        Citizen.Wait(0)
+        if(usingstatus == true) then
+        TriggerEvent('esx_status:getStatus', 'drunk', function(status)
+            if(status.val >= 1) then
+                if(isdrunk == false) then
+                source = status.val
+                isdrunk = true
+                TriggerEvent('mcd_ragdoll:drunk', source, isdrunk)
+                end
+            end
+            if(status.val == 0) then
+                if(isdrunk == true) then
+                source = status.val
+                isdrunk = false
+                TriggerEvent('mcd_ragdoll:drunk', source, isdrunk)
+                end
+            end
+
+
+        end)
+    end
+    end
+end)
 print("[MCD_Ragdoll]: Script Version 1.0")
+
