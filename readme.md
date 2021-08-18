@@ -13,6 +13,12 @@ Add Higher Chance to Fall when you are drunked
 
 Add config.lua
 
+Version 1.0.3:
+
+some fixes
+
+add new a new config
+
 # English
 
 **About**

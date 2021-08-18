@@ -13,3 +13,4 @@ Config.wfall = true -- aktivate falling on normal walking/running
 Config.usingstatus = true -- if using esx_status set true
 Config.drunkfallchance = 3 -- fallchance on jumping/climping when you are Drunk (standart 1/3)
 Config.drunkfallchancew = 25-- fallchance on normal walking/running when you are Drunk(standart 1/25)
+Config.drunktext = true -- send a message when you are Drunk

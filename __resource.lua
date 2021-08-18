@@ -3,7 +3,7 @@ games {'gta5'}
 
 author 'MausCD'
 description 'A small script that adds a chance to stumble/slip off'
-version '1.0.1'
+version '1.0.3'
 
 client_scripts {
     "config.lua",

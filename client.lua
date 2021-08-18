@@ -13,6 +13,7 @@ local wfall = Config.wfall
 local usingstatus = Config.usingstatus 
 local drunkfallchance = Config.drunkfallchance
 local drunkfallchancew = Config.drunkfallchancew
+local drunktext = Config.drunktext
 
 --------------------------------------------- END ---------------------------------------------
 ESX = nil
@@ -226,30 +227,30 @@ end)
 
 
 -- basic needs
+local mfallchance = fallchance
+local mfallchancew = fallchancew
 
 RegisterNetEvent("mcd_ragdoll:drunk")
 AddEventHandler("mcd_ragdoll:drunk", function(source,isdrunk)
     if(isdrunk == true) then
-        local now = false
-        local mfallchance = fallchance
+        mfallchance = fallchance
         fallchance = drunkfallchance
-        local mfallchancew = fallchancew
+        mfallchancew = fallchancew
         fallchancew = drunkfallchancew
+        if (drunktext == true) then
         TriggerEvent('pNotify:SendNotification', {
             text = {drunktext1}
         })
-        TriggerEvent('mcd_ragdoll:save', mfallchancew, mfallchance, now)
+    end
 
         if(debugg == true) then
-            print("now: "..now)
             print("mfallchance: "..mfallchance)
             print("mfallchancew: "..mfallchancew)
             print("drunkfallchance: "..drunkfallchance)
             print("drunkfallchancew: "..drunkfallchancew)
         end
     else
-        local now = true
-        TriggerEvent('mcd_ragdoll:save', now)
+        TriggerEvent('mcd_ragdoll:undrunk', mfallchancew, mfallchance)
     end
 end)
 
@@ -257,28 +258,17 @@ RegisterNetEvent("mcd_ragdoll:undrunk")
 AddEventHandler("mcd_ragdoll:undrunk", function(mfallchancew,mfallchance)
         fallchance = mfallchance
         fallchancew = mfallchancew
+        if (drunktext == true) then
         TriggerEvent('pNotify:SendNotification', {
             text = {drunktext2}
         })
+         end
         if(debugg == true) then
             print("fallchance: "..fallchance)
             print("mfallchance: "..mfallchance)
             print("fallchancew: "..fallchancew)
             print("mfallchancew: "..mfallchancew)
 
-        end
-end)
-
-RegisterNetEvent("mcd_ragdoll:save")
-AddEventHandler("mcd_ragdoll:save", function(mfallchancew,mfallchance,now)
-        local mfallchance = mfallchance 
-        local mfallchancew = mfallchancew
-        if (now == true) then
-            TriggerEvent('mcd_ragdoll:undrunk', mfallchancew, mfallchance)
-        end
-        if(debugg == true) then
-            print("mfallchance: "..mfallchance)
-            print("mfallchancew: "..mfallchancew)
         end
 end)
  
