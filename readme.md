@@ -1,3 +1,5 @@
+# IT IS BUGGEN PLEASE DON`T DOWNLOAD
+
 # MCD_Ragdoll
 
 **Script created by MausCD**
@@ -22,6 +24,8 @@ add new a new config
 # English
 
 **About**
+
+ [Video](youtube.com)
 
 This script adds a chance to stumble/slip off
 
