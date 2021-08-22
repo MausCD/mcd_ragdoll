@@ -62,6 +62,14 @@ Citizen.CreateThread(function(source)
             isfallenw = "You tripped"
             drunktext1 = "You are drunk run carefully ;)"
             drunktext2 = "You are no longer drunk run!"
+            debuggon = "Debugg: ON"
+            debuggoff = "Debugg: OFF"
+            togglewkeyon = "Falling on W-Key: ON"
+            togglewkeyoff = "Falling on W-Key: OFF"
+            togglespacekeyon = "Falling on Space-Key: ON"
+            togglespacekeyoff = "Falling on Space-Key: OFF"
+            setting1 = "/ragdollsettings togglew --toggles Falling on pressing w in Funmode"
+            setting2 = "/ragdollsettings togglespace --toggles Falling on pressing space in Funmode"
         else
             if (language == "de") then
             isfallen = "Du bist gestolpert/abgerutscht"
@@ -71,6 +79,14 @@ Citizen.CreateThread(function(source)
             isfallenw = "Du bist gestolpert"
             drunktext1 = "Du bist bedrunken lauf vorsichtig ;) "
             drunktext2 = "Du bist nicht mehr bedrunken lauf!"
+            debuggon = "Debugg: AN"
+            debuggoff = "Debugg: AUS"
+            togglewkeyon = "Fallen bei W-Key: AN"
+            togglewkeyoff = "Fallen bei W-Key: AUS"
+            togglespacekeyon = "Fallen bei Space-Key: AN"
+            togglespacekeyoff = "Fallen bei Space-Key: AUS"
+            setting1 = "/ragdollsettings togglew --Stolpern beim drücken von w im Funmode umschalten"
+            setting2 = "/ragdollsettings togglespace --Stolpern beim drücken von leertaste im Funmode umschalten"
 
             else 
             isfallen = "translation ".. language .. " doesn`t exist"
@@ -80,6 +96,14 @@ Citizen.CreateThread(function(source)
             isfallenw = "translation ".. language .. " doesn`t exist"
             drunktext1 = "translation ".. language .. " doesn`t exist"
             drunktext2 = "translation ".. language .. " doesn`t exist"
+            debuggon = "translation ".. language .. " doesn`t exist"
+            debuggoff = "translation ".. language .. " doesn`t exist"
+            togglewkeyon = "translation ".. language .. " doesn`t exist"
+            togglewkeyoff = "translation ".. language .. " doesn`t exist"
+            togglespacekeyon = "translation ".. language .. " doesn`t exist"
+            togglespacekeyoff = "translation ".. language .. " doesn`t exist"
+            setting1 = "translation ".. language .. " doesn`t exist"
+            setting2 = "translation ".. language .. " doesn`t exist"
         end end
 
     end 
