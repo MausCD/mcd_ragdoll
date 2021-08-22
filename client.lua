@@ -35,6 +35,20 @@ local drunktext1 = "You are drunk run carefully ;)"
 local drunktext2 = "You are no longer drunk run!"
 local debuggon = "Debugg: ON"
 local debuggoff = "Debugg: OFF"
+local togglewkeyon = "Falling on W-Key: ON"
+local togglewkeyoff = "Falling on W-Key: OFF"
+local togglespacekeyon = "Falling on Space-Key: ON"
+local togglespacekeyoff = "Falling on Space-Key: OFF"
+local setting1 = "/ragdollsettings togglew --toggles Falling on pressing w in Funmode"
+local setting2 = "/ragdollsettings togglespace --toggles Falling on pressing space in Funmode"
+local ison = false
+local toggled2 = false
+local ison2 = true
+local toggled3 = false
+local fun1 = 0
+local fun2 = 0
+local mfallchance = fallchance
+local mfallchancew = fallchancew
 
 
 Citizen.CreateThread(function(source)	
@@ -82,25 +96,18 @@ Citizen.CreateThread(function(source)
         if (wait == false) then
         wait = true
         if(debugg == true) then
-        print("Fun: "..fun)
+        print("Fun1: ",fun1)
         end
 
 
         local ragdoll = 1
-        if (fun == 0) then
+        if (fun1 == 0) then
         ragdoll = math.random(1,fallchance)
         if(debugg == true) then
         print(ragdoll)
         end
         end
-
-        -- print(ragdoll)
-        -- print(retval)
-        -- print(ped)
-
-        -- print(fun)
         if (ragdoll == 1) then
-            -- print('ragdoll')
             Citizen.Wait(700)
             SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, true, true, false) 
             TriggerEvent('pNotify:SendNotification', {
@@ -109,9 +116,7 @@ Citizen.CreateThread(function(source)
         end
         Citizen.Wait(1000)
         wait = false
-        end 
-        end
-        end
+        end end end
 
 -- w fall
 
@@ -125,12 +130,13 @@ if (wfall == true) then
         waitw = true
 
     local ragdollw = 1
-    if (fun == 0) then
+    if (fun2 == 0) then
     ragdollw = math.random(1,fallchancew)
+    end
     if(debugg == true) then
-    print(ragdollw)
-    end
-    end
+        print(ragdollw)
+        print("Fun2: ",fun2)
+        end
 
     if (ragdollw == 1) then
         Citizen.Wait(700)
@@ -142,6 +148,48 @@ if (wfall == true) then
     Citizen.Wait(1000)
     waitw = false
 end end end end end 
+
+
+--w and space
+
+if IsControlPressed(1, 32) and IsControlPressed(1, 22 --[[ "x" key ]]) then
+    ped = GetPlayerPed(-1)
+    local retval = IsPedInAnyVehicle(ped,false --[[ boolean ]])
+    if (retval == false) then
+    if (wait == false) then
+    wait = true
+    if(debugg == true) then
+    print("Fun1: ",fun1)
+    end
+
+
+    local ragdoll = 1
+    if (fun1 == 0) then
+    ragdoll = math.random(1,fallchance)
+    if(debugg == true) then
+    print(ragdoll)
+    end
+    end
+    if (ragdoll == 1) then
+        Citizen.Wait(700)
+        SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, true, true, false) 
+        TriggerEvent('pNotify:SendNotification', {
+            text = {isfallen}
+        })
+    end
+    Citizen.Wait(1000)
+    wait = false
+    end end end
+
+
+
+
+
+
+
+
+
+
 end)
 
 RegisterNetEvent("fun")
@@ -150,6 +198,12 @@ local seted = 0
 
     if (fun == 0) then
     fun = 1
+    if(ison2 == true) then
+    fun1 = 1
+    end
+    if(ison == true) then
+    fun2 = 1
+    end
     ragdoll = 1
     if(debugg == true) then
     print('FUNmode on')
@@ -165,6 +219,8 @@ local seted = 0
     if (seted == 0) then
     if (fun == 1) then
         fun = 0
+        fun2 = 0
+        fun1 = 0
         if(debugg == true) then
         print('FUNmode off')
         end
@@ -174,8 +230,6 @@ local seted = 0
             args = {servername, funmodeoff}
             })
     end end
-
-
     seted = 0
 end)
 
@@ -221,14 +275,22 @@ RegisterCommand("ragdollfun", function(source)
     end
 end)
 
+
+
+
 RegisterCommand("ragdolldebugg", function(source)
     TriggerEvent("toggledebugg")
+    print("mfallchance: "..mfallchance)
+    print("mfallchancew: "..mfallchancew)
+    print("drunkfallchance: "..drunkfallchance)
+    print("drunkfallchancew: "..drunkfallchancew)
+    print("fallchance: "..fallchance)
+    print("fallchancew: "..fallchancew)
 end)
 
 
 -- basic needs
-local mfallchance = fallchance
-local mfallchancew = fallchancew
+
 
 RegisterNetEvent("mcd_ragdoll:drunk")
 AddEventHandler("mcd_ragdoll:drunk", function(source,isdrunk)
@@ -299,4 +361,117 @@ Citizen.CreateThread(function(source)
     end
 end)
 print("[MCD_Ragdoll]: Script Version 1.0")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RegisterCommand("ragdollsettings", function(source,input)
+    if (command == 1) then
+    TriggerEvent("settings",source,input)
+    else
+        TriggerEvent('chat:addMessage', {
+            color = { 255, 0, 0},
+            multiline = true,
+            args = {servername, nocommand}
+            })
+
+    end
+end)
+
+
+
+RegisterNetEvent("settings")
+AddEventHandler("settings", function(source,input)
+    local input = table.unpack(input)
+        if(input == nil) then
+            TriggerEvent('chat:addMessage', {
+                color = { 255, 0, 0},
+                multiline = true,
+                args = {servername,setting1}
+                })
+                TriggerEvent('chat:addMessage', {
+                    color = { 255, 0, 0},
+                    multiline = true,
+                    args = {servername,setting2}
+                    })
+        end
+    
+        if(input == "togglew") then
+            if(ison == false) then
+            ison = true
+            toggled2 = true
+            fun2 = 1
+            TriggerEvent('chat:addMessage', {
+                color = { 255, 0, 0},
+                multiline = true,
+                args = {servername,togglewkeyon}
+                })
+            end
+
+            if(toggled2 == false) then
+            if(ison == true) then
+                ison = false
+                fun2 = 0
+                TriggerEvent('chat:addMessage', {
+                    color = { 255, 0, 0},
+                    multiline = true,
+                    args = {servername,togglewkeyoff}
+                    })
+                end
+            end
+            toggled2 = false
+        end
+
+        if(input == "togglespace") then
+            if(ison2 == false) then
+                ison2 = true
+                toggled3 = true
+                fun1 = 1
+                TriggerEvent('chat:addMessage', {
+                    color = { 255, 0, 0},
+                    multiline = true,
+                    args = {servername,togglespacekeyon}
+                    })
+                end
+    
+                if(toggled3 == false) then
+                if(ison2 == true) then
+                    ison2 = false
+                    fun1 = 0
+                    TriggerEvent('chat:addMessage', {
+                        color = { 255, 0, 0},
+                        multiline = true,
+                        args = {servername,togglespacekeyoff}
+                        })
+                    end
+                end
+                toggled3 = false
+        end
+end)
 
