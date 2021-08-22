@@ -2,7 +2,7 @@
 
 **Script created by MausCD**
 
- [Video](https://www.youtube.com/watch?v=YQz_K1vhk-U)
+ [Video](https://youtu.be/AxwFQ5jnfvQ)
 
 **Changelog**
 Version 1.0.1:
